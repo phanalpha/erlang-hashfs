@@ -1,14 +1,19 @@
 {application, hashfs,
- [{description, "An OTP application"},
+ [{description, "A content-addressable file system"},
   {vsn, "0.1.0"},
-  {registered, []},
+  {registered, [hashfs, hashfs_sup]},
   {mod, { hashfs_app, []}},
   {applications,
-   [kernel,
-    stdlib
+   [kernel
+   ,stdlib
+   ,crypto
    ]},
-  {env,[]},
-  {modules, []},
+  {env,[{dir, "./blobs"}
+       ,{algorithm, "sha"}
+       ]},
+  {modules, [hashfs
+	    ,hashfs_app
+	    ,hashfs_sup]},
 
   {maintainers, []},
   {licenses, []},
